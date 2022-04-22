@@ -1,0 +1,20 @@
+{
+  "name": "big_parsing",
+  "version": "1.0.0",
+  "description": "Kata de parsing d'un fichier JSON trop grand pour être mis en mémoire",
+  "main": "solution.js",
+  "scripts": {
+    "test": "node --max-old-space-size=50 solution.js 558141"
+  },
+  "keywords": [],
+  "author": "Guillaume Gruyer",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "stream-json": "^1.7.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gkub3/katas_eXaltIT_big_parsing.git"
+  }
+}
