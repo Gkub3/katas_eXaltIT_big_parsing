@@ -1,15 +1,17 @@
 {
   "name": "big_parsing",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Kata de parsing d'un fichier JSON trop grand pour être mis en mémoire",
   "main": "solution.js",
+  "type": "module",
   "scripts": {
-    "test": "node --max-old-space-size=50 solution.js 558141"
+    "start": "node --max-old-space-size=50 solution.js 558141"
   },
   "keywords": [],
   "author": "Guillaume Gruyer",
   "license": "ISC",
   "dependencies": {
+    "es-main": "^1.0.2",
     "fs": "^0.0.1-security",
     "stream-json": "^1.7.4"
   },
