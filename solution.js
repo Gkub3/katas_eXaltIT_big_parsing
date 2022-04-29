@@ -1,18 +1,8 @@
-/**
- * The problem consists in extracting data from a JSON file too big to be parsed / hold in memory as a whole.
- * The file is a valid JSON file, consisting in an array of objects. The structure of objects is not known, apart from the fact that they have an id and a name attributes.
- * The formatting of the file is not known: it may be a single line file, or formatted using a variety of whitespace options.
- * The problem consists in writing a Node.js program which must:
- *      - accept an id as a command-line argument
- *      - log to the console the name attribute of the object with the corresponding id.
- * 
- * To simulate low memory constraints, your program should work with node --max_old_space_size=50
- */
-
 //Chargement des dépendances
-const   StreamArray = require('stream-json/streamers/StreamArray'), //Permet de transformer une liste d'objets en flux
-        { Writable } = require('stream'),
-        fs = require('fs')
+import esMain from 'es-main';
+import StreamArray from 'stream-json/streamers/StreamArray.js'
+import { Writable } from 'stream'
+import fs from 'fs'
 
 /**
  * 
@@ -23,7 +13,7 @@ const   StreamArray = require('stream-json/streamers/StreamArray'), //Permet de 
  * @param {number | string} id L'identifiant de l'objet dans la liste
  * @returns {string} Propriété "name" de l'objet
  */
-const searchNameInJSONFile = (file, id) => {
+export function searchNameInJSONFile (file, id) {
     return new Promise((resolve, reject) => {
         try {
             //Création du flux de lecture du fichier
@@ -55,11 +45,11 @@ const searchNameInJSONFile = (file, id) => {
 /**
  * Permet de détecter si le fichier à été exécuté directement
  */
- if (require.main === module) {
+if (esMain(import.meta)) {
     /**
-    * Récupération de l'Id recherché depuis les arguments de la ligne de commande
-    * Id est un nombre et est le premier argument
-    */
+     * Récupération de l'Id recherché depuis les arguments de la ligne de commande
+     * Id est un nombre et est le premier argument
+     */
     const myArgs = process.argv.slice(2)
     if (!myArgs[0]) { console.error("Can't find an 'id' in command-line arguments") }
     else {
@@ -71,5 +61,3 @@ const searchNameInJSONFile = (file, id) => {
         })
     }
 }
-
-module.exports.searchNameInJSONFile = searchNameInJSONFile;
